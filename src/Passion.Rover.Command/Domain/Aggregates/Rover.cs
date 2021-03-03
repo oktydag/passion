@@ -35,34 +35,29 @@ namespace Passion.Rover.Command.Domain.Aggregates
         public CommunicationWithWorldEngine CommunicationWithWorldEngine { get; protected set; }
         
 
-        public void CollectSampleStones()
-        {
-            
-        }
-
-        public void Synthesis()
-        {
-            
-        }
-
-        public void SendTokenPhotos()
-        {
-            
-        }
-
-        public void SendRecentLocation()
-        {
-            
-        }
-
-        public void SendCollectedSamples()
-        {
-            
-        }
-
-        public void SendSynthesisResults()
-        {
-            
-        }
+        // public void Synthesis()
+        // {
+        //     
+        // }
+        //
+        // public void SendTokenPhotos()
+        // {
+        //     
+        // }
+        //
+        // public void SendRecentLocation()
+        // {
+        //     
+        // }
+        //
+        // public void SendCollectedSamples()
+        // {
+        //     
+        // }
+        //
+        // public void SendSynthesisResults()
+        // {
+        //     
+        // }
     }
 }

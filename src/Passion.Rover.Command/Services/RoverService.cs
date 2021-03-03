@@ -31,7 +31,7 @@ namespace Passion.Rover.Command.Services
                     new MovementEngine(new Location(0,0,Direction.North), DateTime.Now.ToUniversalTime() ), new SampleCollectorEngine(), new SynthesisEngine(),
                     new CommunicationWithWorldEngine());
                 
-                _roverRepository.InsertAsync(newPassionRover);
+              _roverRepository.InsertAsync(newPassionRover);
             }
         }
     }

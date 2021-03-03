@@ -42,10 +42,12 @@ namespace Passion.Rover.Command
             
             services.AddSingleton<ICameraDomainService, CameraDomainService>();
             services.AddSingleton<IMovementDomainService, MovementDomainService>();
+            services.AddSingleton<ISampleCollectorDomainService, SampleCollectorDomainService>();
             
             services.AddMediatR(typeof(Startup));
             services.AddMediatR(typeof(TakeWhatYouSeeCommandHandler));
             services.AddMediatR(typeof(GoGivenLocationCommandHandler));
+            services.AddMediatR(typeof(CollectSampleCommandHandler));
             
             services.AddSwaggerGen();
         }

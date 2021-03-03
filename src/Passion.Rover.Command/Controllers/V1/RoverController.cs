@@ -44,5 +44,14 @@ namespace Passion.Rover.Command.Controllers.V1
             if (goGivenLocationCommand) return Ok();
             return BadRequest();
         }
+        
+        [HttpPost("collectsample")]
+        public async Task<ActionResult<HttpStatusCode>> CollectSampleAsync([FromBody] CollectSampleCommand command)
+        {
+            var collectSampleCommand = await _mediator.Send(command);
+
+            if (collectSampleCommand) return Ok();
+            return BadRequest();
+        }
     }
 }
