@@ -28,8 +28,7 @@ namespace Passion.Rover.Command.Services
             if (passionRover.Result == null)
             {
                 var newPassionRover = new Domain.Aggregates.Rover(ObjectId.Parse(Rovers.Passion),"Passion", DateTime.Now, new CameraEngine(),
-                    new MovementEngine(new Location(0,0,Direction.North), DateTime.Now.ToUniversalTime() ), new SampleCollectorEngine(), new SynthesisEngine(),
-                    new CommunicationWithWorldEngine());
+                    new MovementEngine(new Location(0,0,Direction.North), DateTime.Now.ToUniversalTime() ), new SampleCollectorEngine());
                 
               _roverRepository.InsertAsync(newPassionRover);
             }

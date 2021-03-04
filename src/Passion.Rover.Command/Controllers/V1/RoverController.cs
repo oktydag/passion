@@ -18,16 +18,9 @@ namespace Passion.Rover.Command.Controllers.V1
             _mediator = mediator;
         }
 
-        [HttpGet("healthcheck")]
-        [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
+        [HttpPost("photo/take")]
+        [ProducesResponseType(typeof(HttpStatusCode), (int) HttpStatusCode.OK)]
         [ProducesResponseType((int) HttpStatusCode.NotFound)]
-        // [Authorize(nameof(GetClaimByClaimNumber))]
-        public HttpStatusCode GetByTest()
-        {
-            return HttpStatusCode.OK;
-        }
-
-        [HttpPost("takephoto")]
         public async Task<ActionResult<HttpStatusCode>> TakePhotoAsync([FromBody] TakeWhatYouSeeCommand command)
         {
             var takePhotoResponse = await _mediator.Send(command);
@@ -37,6 +30,8 @@ namespace Passion.Rover.Command.Controllers.V1
         }
         
         [HttpPost("go")]
+        [ProducesResponseType(typeof(HttpStatusCode), (int) HttpStatusCode.OK)]
+        [ProducesResponseType((int) HttpStatusCode.NotFound)]
         public async Task<ActionResult<HttpStatusCode>> TakePhotoAsync([FromBody] GoGivenLocationCommand command)
         {
             var goGivenLocationCommand = await _mediator.Send(command);
@@ -45,7 +40,9 @@ namespace Passion.Rover.Command.Controllers.V1
             return BadRequest();
         }
         
-        [HttpPost("collectsample")]
+        [HttpPost("sample/collect")]
+        [ProducesResponseType(typeof(HttpStatusCode), (int) HttpStatusCode.OK)]
+        [ProducesResponseType((int) HttpStatusCode.NotFound)]
         public async Task<ActionResult<HttpStatusCode>> CollectSampleAsync([FromBody] CollectSampleCommand command)
         {
             var collectSampleCommand = await _mediator.Send(command);

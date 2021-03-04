@@ -11,8 +11,7 @@ namespace Passion.Rover.Command.Domain.Aggregates
         }
 
         public Rover(ObjectId id, string name, DateTime createdDate, CameraEngine cameraEngine,
-            MovementEngine movementEngine, SampleCollectorEngine sampleCollectorEngine, SynthesisEngine synthesisEngine,
-            CommunicationWithWorldEngine communicationWithWorldEngine)
+            MovementEngine movementEngine, SampleCollectorEngine sampleCollectorEngine)
         {
             this.Id = id;
             Name = name;
@@ -20,8 +19,6 @@ namespace Passion.Rover.Command.Domain.Aggregates
             CameraEngine = cameraEngine;
             MovementEngine = movementEngine;
             SampleCollectorEngine = sampleCollectorEngine;
-            SynthesisEngine = synthesisEngine;
-            CommunicationWithWorldEngine = communicationWithWorldEngine;
         }
 
         public string Name { get; protected set; }
@@ -31,33 +28,5 @@ namespace Passion.Rover.Command.Domain.Aggregates
         public CameraEngine CameraEngine { get; protected set; }
         public MovementEngine MovementEngine { get; protected set; }
         public SampleCollectorEngine SampleCollectorEngine { get; protected set; }
-        public SynthesisEngine SynthesisEngine { get; protected set; }
-        public CommunicationWithWorldEngine CommunicationWithWorldEngine { get; protected set; }
-        
-
-        // public void Synthesis()
-        // {
-        //     
-        // }
-        //
-        // public void SendTokenPhotos()
-        // {
-        //     
-        // }
-        //
-        // public void SendRecentLocation()
-        // {
-        //     
-        // }
-        //
-        // public void SendCollectedSamples()
-        // {
-        //     
-        // }
-        //
-        // public void SendSynthesisResults()
-        // {
-        //     
-        // }
     }
 }
