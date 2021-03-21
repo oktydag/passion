@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Passion.Outbox.Publisher.Events.V1;
+using Passion.Events.V1;
 
 namespace Passion.Outbox.Publisher.Events
 {

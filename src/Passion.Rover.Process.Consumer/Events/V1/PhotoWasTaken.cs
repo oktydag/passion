@@ -1,4 +1,4 @@
-﻿using Passion.Outbox.Publisher.Events;
+﻿using Passion.Rover.Process.Consumer.Events;
 
 namespace Passion.Events.V1
 {

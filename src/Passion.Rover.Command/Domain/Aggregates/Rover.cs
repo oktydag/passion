@@ -1,9 +1,11 @@
 ﻿using System;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Passion.Rover.Command.Domain.SeedWork;
 
 namespace Passion.Rover.Command.Domain.Aggregates
 {
+    [BsonIgnoreExtraElements]
     public class Rover : Entity, IAggregateRoot
     {
         protected Rover()

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MassTransit;
 using MongoDB.Bson;
-using Passion.Outbox.Publisher.Events.V1;
+using Passion.Events.V1;
 using Passion.Outbox.Publisher.Services.Contracts;
 
 namespace Passion.Outbox.Publisher.Consumers
