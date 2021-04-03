@@ -26,11 +26,11 @@ namespace Passion.Outbox.Publisher.Consumers
 
             if (message.IsReceivedSuccessfully)
             {
-                await _outboxService.DeleteMessageById(ObjectId.Parse(message.Id));
+                await _outboxService.DeleteMessageById(ObjectId.Parse(message.EventId));
             }
             else
             {
-                await _outboxService.MarkAsFailed(ObjectId.Parse(message.Id));
+                await _outboxService.MarkAsFailed(ObjectId.Parse(message.EventId));
             }
         }
     }

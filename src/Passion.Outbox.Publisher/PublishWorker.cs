@@ -41,7 +41,7 @@ namespace Passion.Outbox.Publisher
                     
                     var eventType = _eventFactory.FindEventType(dataInOutbox.Type);
                     var publishedData = JsonConvert.DeserializeObject(dataInOutbox.Data, eventType);
-
+                    
                     await _messageBusService.Publish(publishedData);
 
                     _logger.LogInformation("Message published.");

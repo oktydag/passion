@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Passion.Rover.Process.Consumer.Services;
-using Passion.Rover.Process.Consumer.Services.Contracts;
+using Passion.Rover.Query.Consumer.Services;
+using Passion.Rover.Query.Consumer.Services.Contracts;
 
-namespace Passion.Rover.Process.Consumer
+namespace Passion.Rover.Query.Consumer
 {
     class Program
     {
@@ -38,11 +38,8 @@ namespace Passion.Rover.Process.Consumer
                 .AddEnvironmentVariables()
                 .Build();
 
-            services.Configure<DatabaseSettings>(configuration.GetSection(nameof(DatabaseSettings)));
-            services.AddSingleton<IDatabaseSettings, DatabaseSettings>();
-            
-            services.AddSingleton<IRoverService, RoverService>();
             services.AddSingleton<IBusService, BusService>();
+            services.AddSingleton<IElasticsearchService, ElasticsearchService>();
         }
     }
 }

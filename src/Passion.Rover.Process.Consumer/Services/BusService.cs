@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MassTransit;
 using Passion.Rover.Process.Consumer.Consumers;
 using Passion.Rover.Process.Consumer.Services.Contracts;
 
-public class BusConfiguratorService : IBusConfiguratorService
+public class BusService : IBusService
 {
     private readonly IRoverService _roverService;
-    
-    public BusConfiguratorService(IRoverService roverService)
+
+    public BusService(IRoverService roverService)
     {
         _roverService = roverService;
     }
-    
+
     IBusControl _bus;
 
     public bool Start()
@@ -21,7 +22,16 @@ public class BusConfiguratorService : IBusConfiguratorService
 
         return true;
     }
-    
+
+    public async Task Publish<TEvent>(TEvent @event)
+    {
+        var sendToUri =
+            new Uri($"{ConnectionConstants.HostAddress}{ConnectionConstants.ProviderPassionCommandStatusQueueName}");
+
+        var sendEndpoint = _bus.GetSendEndpoint(sendToUri).Result;
+        await sendEndpoint.Send(@event);
+    }
+
 
     public bool Stop()
     {
@@ -30,7 +40,7 @@ public class BusConfiguratorService : IBusConfiguratorService
         return true;
     }
 
-   private IBusControl ConfigureBus(IRoverService roverService)
+    private IBusControl ConfigureBus(IRoverService roverService)
     {
         return Bus.Factory.CreateUsingRabbitMq(cfg =>
         {
@@ -41,14 +51,13 @@ public class BusConfiguratorService : IBusConfiguratorService
             });
             cfg.ReceiveEndpoint(ConnectionConstants.SubscribeQueueName, e =>
             {
-                e.Consumer( () => new PhotoWasTakenConsumer(roverService));
-                e.Consumer( () => new LocationChangedConsumer(roverService));
-                e.Consumer( () => new SampleCollectedConsumer(roverService));
+                e.Consumer(() => new PhotoWasTakenConsumer(roverService, this));
+                e.Consumer(() => new LocationChangedConsumer(roverService, this));
+                e.Consumer(() => new SampleCollectedConsumer(roverService, this));
             });
         });
     }
 }
-
 
 
 public class ConnectionConstants
@@ -57,5 +66,5 @@ public class ConnectionConstants
     public static string Username = "od";
     public static string Password = "od1234";
     public static string SubscribeQueueName = "Out.Passion.Command";
-    public static string PublishSagaQueueName = "In.Passion.Command.Status";
+    public static string ProviderPassionCommandStatusQueueName = "In.Passion.Command.Status";
 }

@@ -11,10 +11,12 @@ namespace Passion.Rover.Process.Consumer.Consumers
     public class LocationChangedConsumer : IConsumer<LocationChanged>
     {
         private readonly IRoverService _roverService;
+        private readonly IBusService _busService;
 
-        public LocationChangedConsumer(IRoverService roverService)
+        public LocationChangedConsumer(IRoverService roverService, IBusService busService)
         {
             _roverService = roverService;
+            _busService = busService;
         }
 
         public async Task Consume(ConsumeContext<LocationChanged> context)
@@ -28,6 +30,13 @@ namespace Passion.Rover.Process.Consumer.Consumers
                 Y = message.Y,
                 Direction = message.Direction
             });
+
+            await _busService.Publish(new MessageProcessed()
+            {
+                EventId = message.Id,
+                IsReceivedSuccessfully = true
+            });
+
         }
     }
 }

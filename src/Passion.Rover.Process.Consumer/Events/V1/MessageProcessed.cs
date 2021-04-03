@@ -2,7 +2,7 @@
 {
     public class MessageProcessed
     {
-        public string Id { get;  set; }
+        public string EventId { get;  set; }
         public bool IsReceivedSuccessfully { get; set; }
     }
 }

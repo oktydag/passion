@@ -1,6 +1,6 @@
-﻿using Passion.Outbox.Publisher.Events;
+﻿using Passion.Rover.Query.Consumer.Events;
 
-namespace Passion.Events.V1
+namespace Passion.Rover.Query.Consumer.Events.V1
 {
     public class PhotoWasTaken : IEvent
     {

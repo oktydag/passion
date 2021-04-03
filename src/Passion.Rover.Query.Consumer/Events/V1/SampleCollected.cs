@@ -1,6 +1,4 @@
-﻿using Passion.Outbox.Publisher.Events;
-
-namespace Passion.Events.V1
+﻿namespace Passion.Rover.Query.Consumer.Events.V1
 {
     public class SampleCollected : IEvent
     {

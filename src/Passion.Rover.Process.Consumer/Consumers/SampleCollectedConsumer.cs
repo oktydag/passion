@@ -10,10 +10,12 @@ namespace Passion.Rover.Process.Consumer.Consumers
     public class SampleCollectedConsumer : IConsumer<SampleCollected>
     {
         private readonly IRoverService _roverService;
+        private readonly IBusService _busService;
 
-        public SampleCollectedConsumer(IRoverService roverService)
+        public SampleCollectedConsumer(IRoverService roverService, IBusService busService)
         {
             _roverService = roverService;
+            _busService = busService;
         }
 
         
@@ -26,6 +28,12 @@ namespace Passion.Rover.Process.Consumer.Consumers
                 Id = ObjectId.Parse(message.Id),
                 ObjectName = message.ObjectName,
                 ObjectAmountAsGram = message.ObjectAmountAsGram
+            });
+            
+            await _busService.Publish(new MessageProcessed()
+            {
+                EventId = message.Id,
+                IsReceivedSuccessfully = true
             });
         }
     }
