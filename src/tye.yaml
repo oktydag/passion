@@ -1,0 +1,49 @@
+name: passion
+services:
+
+- name: rabbitmq
+  image: rabbitmq:3-management
+  bindings:
+    - name: rabbit
+      port: 5672
+      protocol: rabbitmq
+    - name: management
+      port: 15672
+
+- name: elasticsearch
+  image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+  bindings:
+    - name: elk-port1
+      port: 9200       
+    - name: elk-port2
+      port: 9300 
+      
+- name: passion-rover-command-api
+  project: Passion.Rover.Command\Passion.Rover.Command.csproj
+  bindings:
+  - port: 5000
+  replicas: 1
+
+- name: passion-outbox-publisher
+  project: Passion.Outbox.Publisher\Passion.Outbox.Publisher.csproj
+  bindings:
+  - port: 5001
+  replicas: 1 
+
+- name: passion-rover-process-consumer
+  project: Passion.Rover.Process.Consumer\Passion.Rover.Process.Consumer.csproj
+  bindings:
+  - port: 5002
+  replicas: 3
+
+- name: passion-rover-query-consumer
+  project: Passion.Rover.Query.Consumer\Passion.Rover.Query.Consumer.csproj
+  bindings:
+  - port: 5003
+  replicas: 1
+
+- name: passion-rover-query-api
+  project: Passion.Rover.Query.Consumer\Passion.Rover.Query.Consumer.csproj
+  bindings:
+  - port: 5004
+  replicas: 3

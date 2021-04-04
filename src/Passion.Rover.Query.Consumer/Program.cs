@@ -1,45 +1,26 @@
-﻿using System;
-using System.IO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Passion.Rover.Query.Consumer.Services;
-using Passion.Rover.Query.Consumer.Services.Contracts;
 
 namespace Passion.Rover.Query.Consumer
 {
-    class Program
+    public class Program
     {
-        static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-            
-            var busService = serviceProvider.GetService<IBusService>();
-            busService.Start();
-            
-            Console.WriteLine("Listening Rover Commands...");
-            Console.ReadLine();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        private static void ConfigureServices(IServiceCollection services)
-        {
-            services.AddLogging(builder =>
-            {
-                builder.AddConsole();
-                builder.AddDebug();
-            });
-
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.Production.json", optional: false)
-                .AddEnvironmentVariables()
-                .Build();
-
-            services.AddSingleton<IBusService, BusService>();
-            services.AddSingleton<IElasticsearchService, ElasticsearchService>();
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
