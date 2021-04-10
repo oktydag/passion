@@ -4,7 +4,7 @@
 
 ### Architecture
 
-![diagram-single-pod](https://raw.githubusercontent.com/oktydag/k8s-microservices-deploy/master/contents/infrastructure.png)
+![diagram-single-pod](https://raw.githubusercontent.com/oktydag/passion/main/contents/infrastructure.png)
 
 
 ### Run microservices
