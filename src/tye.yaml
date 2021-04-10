@@ -10,6 +10,12 @@ services:
     - name: management
       port: 15672
 
+- name: mongodb
+  image: mongo
+  bindings:
+    - containerPort: 27017
+      protocol: http
+
 - name: elasticsearch
   image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
   bindings:
@@ -43,7 +49,7 @@ services:
   replicas: 1
 
 - name: passion-rover-query-api
-  project: Passion.Rover.Query.Consumer\Passion.Rover.Query.Consumer.csproj
+  project: Passion.Rover.Query\Passion.Rover.Query.csproj
   bindings:
   - port: 5004
-  replicas: 3
+  replicas: 2
