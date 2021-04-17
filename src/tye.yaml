@@ -10,7 +10,7 @@ services:
     - name: management
       port: 15672
 
-- name: mongodb
+- name: mongo
   image: mongo
   bindings:
     - containerPort: 27017
@@ -52,4 +52,4 @@ services:
   project: Passion.Rover.Query\Passion.Rover.Query.csproj
   bindings:
   - port: 5004
-  replicas: 2
+  replicas: 0
