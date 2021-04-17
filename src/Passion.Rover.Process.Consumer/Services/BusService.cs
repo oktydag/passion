@@ -62,7 +62,7 @@ public class BusService : IBusService
 
 public class ConnectionConstants
 {
-    public static string HostAddress = "rabbitmq://localhost/";
+    public static string HostAddress = "rabbitmq://rabbitmq/";
     public static string Username = "od";
     public static string Password = "od1234";
     public static string SubscribeQueueName = "Out.Passion.Command";
