@@ -4,7 +4,7 @@
 
 ### Architecture
 
-![diagram-single-pod](https://raw.githubusercontent.com/oktydag/passion/main/contents/infrastructure-v2.png)
+![diagram-single-pod](https://raw.githubusercontent.com/oktydag/passion/main/contents/architecture_v2.png)
 
 
 ### Run microservices
